@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Fames App</title>
+</head>
+<body>
+    <div id="app">
+        <div id="fames">
+            <h1>Fames</h1>
+            <input type="text" id="lineEdit" placeholder="Enter Name 1">
+            <input type="text" id="lineEdit_2" placeholder="Enter Name 2">
+            <button id="pushButton">Calculate</button>
+            <ul id="listWidget"></ul>
+        </div>
+    </div>
+
+    <script>
+        function status(a) {
+            if (a.length % 6 === 0) {
+                return "SECRET LOVERS";
+            } else if (a.length === 5 || a.length % 6 === 5) {
+                return "ENEMIES";
+            } else if (a.length === 4 || a.length % 6 === 4) {
+                return "MARRIAGE";
+            } else if (a.length === 3 || a.length % 6 === 3) {
+                return "ADMIRES";
+            } else if (a.length === 2 || a.length % 6 === 2) {
+                return "LOVERS";
+            } else if (a.length === 1 || a.length % 6 === 1) {
+                return "FRIENDS";
+            }
+        }
+
+        function strrept(x, y, z) {
+            for (let i = 0; i < x.length; i++) {
+                if (y.indexOf(x[i]) === -1) {
+                    z += x[i];
+                }
+            }
+            return z;
+        }
+
+        document.getElementById("pushButton").addEventListener("click", function () {
+            const a = document.getElementById("lineEdit").value;
+            const b = document.getElementById("lineEdit_2").value;
+            let c = "";
+
+            if (a === "" || b === "") {
+                document.getElementById("listWidget").innerHTML = "<li>No entry</li>";
+            } else {
+                let s = strrept(a, b, c);
+                s = strrept(b, a, c);
+                const output = status(s);
+                document.getElementById("listWidget").innerHTML = `<li>${a} and ${b} are ${output}</li>`;
+            }
+        });
+    </script>
+</body>
+</html>
